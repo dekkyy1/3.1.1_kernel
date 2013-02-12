@@ -33,8 +33,11 @@ static struct kobj_attribute attrbute##_attr = {	\
 	.store	= attrbute##_store,			\
 }
 
+#define DEF_TARGET_FREQ (1550000)
+#define DEF_POKE_FREQ (1550000)
 #define DEF_TARGET_FREQ (1700000)
 #define DEF_POKE_FREQ (1700000)
+
 #define DEF_POKE_MS (100)
 #define DEF_IDLE_MS (300)
 
