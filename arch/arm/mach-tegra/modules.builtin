@@ -1,0 +1,5 @@
+kernel/arch/arm/mach-tegra/pwm.ko
+kernel/arch/arm/mach-tegra/htc_headset_mgr.ko
+kernel/arch/arm/mach-tegra/htc_headset_gpio.ko
+kernel/arch/arm/mach-tegra/htc_headset_pmic.ko
+kernel/arch/arm/mach-tegra/htc_headset_one_wire.ko

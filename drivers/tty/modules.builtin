@@ -1,0 +1,4 @@
+kernel/drivers/tty/serial/serial_core.ko
+kernel/drivers/tty/serial/8250.ko
+kernel/drivers/tty/serial/8250_pci.ko
+kernel/drivers/tty/serial/serial_sc8800g_v1.ko

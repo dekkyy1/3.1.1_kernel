@@ -1,0 +1,11 @@
+kernel/drivers/media/video/tegra/tps61050.ko
+kernel/drivers/media/video/tegra/s5k3h2y.ko
+kernel/drivers/media/video/tegra/ov8838.ko
+kernel/drivers/media/video/tegra/s5k6a1gx03.ko
+kernel/drivers/media/video/tegra/ad5823.ko
+kernel/drivers/media/video/tegra/rawchip/rawchip_spi.ko
+kernel/drivers/media/video/tegra/rawchip/rawchip.ko
+kernel/drivers/media/video/tegra/rawchip/Yushan_API.ko
+kernel/drivers/media/video/tegra/rawchip/yushan_reg.ko
+kernel/drivers/media/video/tegra/rawchip/Yushan_HTC_Functions.ko
+kernel/drivers/media/video/tegra/rawchip/Yushan_Platform_Specific.ko

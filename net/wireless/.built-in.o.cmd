@@ -1,0 +1,1 @@
+cmd_net/wireless/built-in.o :=  /home/dejan/android/toolchains/arm-eabi-linaro-4.6.2/bin/arm-eabi-ld -EL    -r -o net/wireless/built-in.o net/wireless/wext-core.o net/wireless/wext-proc.o net/wireless/wext-spy.o net/wireless/wext-priv.o 

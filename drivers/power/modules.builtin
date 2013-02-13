@@ -1,0 +1,6 @@
+kernel/drivers/power/power_supply.ko
+kernel/drivers/power/tps65200.ko
+kernel/drivers/power/tps80032_adc.ko
+kernel/drivers/power/tps80032_vsys_alarm.ko
+kernel/drivers/power/tps80032_gauge.ko
+kernel/drivers/power/tps80032_charger.ko
