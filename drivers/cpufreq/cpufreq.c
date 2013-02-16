@@ -33,9 +33,6 @@
 
 #include <trace/events/power.h>
 
-#include "../../arch/arm/mach-tegra/tegra_pmqos.h"
-#include "../../arch/arm/mach-tegra/cpu-tegra.h"
-
 /**
  * The "cpufreq driver" - the arch- or hardware-dependent low
  * level driver of CPUFreq support, and its spinlock. This lock
@@ -70,7 +67,6 @@ static DEFINE_SPINLOCK(cpufreq_driver_lock);
  */
 static DEFINE_PER_CPU(int, cpufreq_policy_cpu);
 static DEFINE_PER_CPU(struct rw_semaphore, cpu_policy_rwsem);
-DEFINE_PER_CPU(int, cpufreq_init_done);
 
 #define lock_policy_rwsem(mode, cpu)					\
 int lock_policy_rwsem_##mode						\
@@ -439,8 +435,7 @@ static ssize_t store_##file_name					\
 }
 
 store_one(scaling_min_freq, min);
-//store_one(scaling_max_freq, max);
-//We are going to do something much more fun
+store_one(scaling_max_freq, max);
 
 /**
  * show_cpuinfo_cur_freq - current CPU frequency as detected by hardware
@@ -670,20 +665,6 @@ struct clk *cpu_clk_g = tegra_get_clock_by_name("cpu_g");
 	/* Non-standard sysfs interface: advance buf */
 	ret = sscanf(buf, "%s", size_cur);
 	buf += (strlen(size_cur)+1);
-		max = tegra_pmqos_cpu_freq_limits[cpu];
-		if (max == 0)
-			// valus = 0 means reset to default
-			max = tegra_pmqos_boost_freq;	
-				
-		
-		new_policy.max = max;
-		ret = __cpufreq_set_policy(policy, &new_policy);
-		policy->user_policy.max = new_policy.max;
-		if (!ret)
-			pr_info("maxwen:store_scaling_max_freq_limit set policy->max of cpu %d to %d - ok\n", cpu, new_policy.max);
-		
-		cpufreq_cpu_put(policy);
->>>>>>> 906f290... CPU Hard Cap
 	}
 }
 	/* update dvfs table here */
@@ -692,42 +673,6 @@ struct clk *cpu_clk_g = tegra_get_clock_by_name("cpu_g");
 	return count;
 }
 #endif
-
-static ssize_t store_scaling_max_freq					
-(struct cpufreq_policy *policy, const char *buf, size_t count)		
-{									
-	unsigned int ret = -EINVAL;					
-	struct cpufreq_policy new_policy;
-	char* temp;			
-									
-	ret = cpufreq_get_policy(&new_policy, policy->cpu);		
-	if (ret)							
-		return -EINVAL;						
-									
-	ret = sscanf(buf, "%u", &new_policy.max);			
-	if (ret != 1)							
-		return -EINVAL;						
-/*Bricked:*/					
-	if (new_policy.max <= 475000)
-                return -EINVAL;
-	tegra_pmqos_boost_freq = new_policy.max;
-/*EndBricked*/
-				
-	ret = __cpufreq_set_policy(policy, &new_policy);		
-	policy->user_policy.max = new_policy.max;	
-
-	htc_set_cpu_user_cap(new_policy.max);	
-	pr_info("Xmister: Set User cap to %u\n", new_policy.max);
-
-	temp=kmalloc(sizeof(char)*(strlen(buf)*4+4), GFP_KERNEL);
-	if ( temp ) {
-		sprintf(temp,"%u,%u,%u,%u",new_policy.max,new_policy.max,new_policy.max,new_policy.max);
-		ret=store_scaling_max_freq_limit(&new_policy, temp, count);		
-		kfree(temp);
-	}
-									
-	return ret ? ret : count;					
-}
 
 cpufreq_freq_attr_ro_perm(cpuinfo_cur_freq, 0400);
 cpufreq_freq_attr_ro(cpuinfo_min_freq);
