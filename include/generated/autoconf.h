@@ -384,6 +384,9 @@
 #define __enabled_CONFIG_IP6_NF_MANGLE_MODULE 0
 #define __enabled_CONFIG_ARCH_KS8695 0
 #define __enabled_CONFIG_ARCH_KS8695_MODULE 0
+#define CONFIG_TEGRA_ARB_SEMAPHORE 1
+#define __enabled_CONFIG_TEGRA_ARB_SEMAPHORE 1
+#define __enabled_CONFIG_TEGRA_ARB_SEMAPHORE_MODULE 0
 #define __enabled_CONFIG_SCSI_CONSTANTS 0
 #define __enabled_CONFIG_SCSI_CONSTANTS_MODULE 0
 #define __enabled_CONFIG_NETFILTER_XT_MATCH_REALM 0
@@ -1678,6 +1681,9 @@
 #define __enabled_CONFIG_USB_SERIAL_WHITEHEAT_MODULE 0
 #define __enabled_CONFIG_NET_CLS_ROUTE4 0
 #define __enabled_CONFIG_NET_CLS_ROUTE4_MODULE 0
+#define CONFIG_CRYPTO_SHA1_ARM 1
+#define __enabled_CONFIG_CRYPTO_SHA1_ARM 1
+#define __enabled_CONFIG_CRYPTO_SHA1_ARM_MODULE 0
 #define __enabled_CONFIG_KEYBOARD_QT1070 0
 #define __enabled_CONFIG_KEYBOARD_QT1070_MODULE 0
 #define __enabled_CONFIG_USB_NET2272 0
@@ -2067,7 +2073,8 @@
 #define __enabled_CONFIG_CRYPTO_BLOWFISH_MODULE 0
 #define __enabled_CONFIG_FB_SIS 0
 #define __enabled_CONFIG_FB_SIS_MODULE 0
-#define __enabled_CONFIG_CRYPTO_DEV_TEGRA_AES 0
+#define CONFIG_CRYPTO_DEV_TEGRA_AES 1
+#define __enabled_CONFIG_CRYPTO_DEV_TEGRA_AES 1
 #define __enabled_CONFIG_CRYPTO_DEV_TEGRA_AES_MODULE 0
 #define __enabled_CONFIG_MODULE_FORCE_LOAD 0
 #define __enabled_CONFIG_MODULE_FORCE_LOAD_MODULE 0
@@ -3210,8 +3217,7 @@
 #define CONFIG_DEBUG_FS 1
 #define __enabled_CONFIG_DEBUG_FS 1
 #define __enabled_CONFIG_DEBUG_FS_MODULE 0
-#define CONFIG_ARM_THUMBEE 1
-#define __enabled_CONFIG_ARM_THUMBEE 1
+#define __enabled_CONFIG_ARM_THUMBEE 0
 #define __enabled_CONFIG_ARM_THUMBEE_MODULE 0
 #define __enabled_CONFIG_ARCH_TCC_926 0
 #define __enabled_CONFIG_ARCH_TCC_926_MODULE 0
@@ -4654,7 +4660,8 @@
 #define __enabled_CONFIG_FB_TRIDENT_MODULE 0
 #define __enabled_CONFIG_SENSORS_ADM1029 0
 #define __enabled_CONFIG_SENSORS_ADM1029_MODULE 0
-#define __enabled_CONFIG_KSM 0
+#define CONFIG_KSM 1
+#define __enabled_CONFIG_KSM 1
 #define __enabled_CONFIG_KSM_MODULE 0
 #define __enabled_CONFIG_DECNET 0
 #define __enabled_CONFIG_DECNET_MODULE 0
@@ -6249,6 +6256,9 @@
 #define __enabled_CONFIG_GENERIC_CLOCKEVENTS_BROADCAST_MODULE 0
 #define __enabled_CONFIG_HID_HOLTEK 0
 #define __enabled_CONFIG_HID_HOLTEK_MODULE 0
+#define CONFIG_CRYPTO_AES_ARM 1
+#define __enabled_CONFIG_CRYPTO_AES_ARM 1
+#define __enabled_CONFIG_CRYPTO_AES_ARM_MODULE 0
 #define CONFIG_SERIAL_8250_PCI 1
 #define __enabled_CONFIG_SERIAL_8250_PCI 1
 #define __enabled_CONFIG_SERIAL_8250_PCI_MODULE 0
@@ -6334,8 +6344,7 @@
 #define CONFIG_NEW_LEDS 1
 #define __enabled_CONFIG_NEW_LEDS 1
 #define __enabled_CONFIG_NEW_LEDS_MODULE 0
-#define CONFIG_SWAP 1
-#define __enabled_CONFIG_SWAP 1
+#define __enabled_CONFIG_SWAP 0
 #define __enabled_CONFIG_SWAP_MODULE 0
 #define CONFIG_MFD_TPS80031 1
 #define __enabled_CONFIG_MFD_TPS80031 1

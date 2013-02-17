@@ -21,7 +21,6 @@
 #define TI_TP_VALUE 96 /* offsetof(struct thread_info, tp_value)	@ */
 #define TI_FPSTATE 288 /* offsetof(struct thread_info, fpstate)	@ */
 #define TI_VFPSTATE 432 /* offsetof(struct thread_info, vfpstate)	@ */
-#define TI_THUMBEE_STATE 712 /* offsetof(struct thread_info, thumbee_state)	@ */
 
 #define S_R0 0 /* offsetof(struct pt_regs, ARM_r0)	@ */
 #define S_R1 4 /* offsetof(struct pt_regs, ARM_r1)	@ */
