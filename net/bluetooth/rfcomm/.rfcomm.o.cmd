@@ -1,1 +1,0 @@
-cmd_net/bluetooth/rfcomm/rfcomm.o := /home/dejan/android/toolchains/arm-eabi-linaro-4.6.2/bin/arm-eabi-ld -EL    -r -o net/bluetooth/rfcomm/rfcomm.o net/bluetooth/rfcomm/core.o net/bluetooth/rfcomm/sock.o 

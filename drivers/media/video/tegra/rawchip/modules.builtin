@@ -1,6 +1,0 @@
-kernel/drivers/media/video/tegra/rawchip/rawchip_spi.ko
-kernel/drivers/media/video/tegra/rawchip/rawchip.ko
-kernel/drivers/media/video/tegra/rawchip/Yushan_API.ko
-kernel/drivers/media/video/tegra/rawchip/yushan_reg.ko
-kernel/drivers/media/video/tegra/rawchip/Yushan_HTC_Functions.ko
-kernel/drivers/media/video/tegra/rawchip/Yushan_Platform_Specific.ko

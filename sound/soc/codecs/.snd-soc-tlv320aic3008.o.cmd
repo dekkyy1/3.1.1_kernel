@@ -1,1 +1,0 @@
-cmd_sound/soc/codecs/snd-soc-tlv320aic3008.o := /home/dejan/android/toolchains/arm-eabi-linaro-4.6.2/bin/arm-eabi-ld -EL    -r -o sound/soc/codecs/snd-soc-tlv320aic3008.o sound/soc/codecs/tlv320aic3008.o 

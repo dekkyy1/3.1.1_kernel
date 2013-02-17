@@ -1,9 +1,0 @@
-kernel/drivers/i2c/chips/pn544.ko
-kernel/drivers/i2c/chips/bma250.ko
-kernel/drivers/i2c/chips/akm8975_pana_gyro.ko
-kernel/drivers/i2c/chips/ewtzmu2.ko
-kernel/drivers/i2c/chips/tps61310_flashlight.ko
-kernel/drivers/i2c/chips/cm3628.ko
-kernel/drivers/i2c/chips/cm3629.ko
-kernel/drivers/i2c/chips/tfa9887.ko
-kernel/drivers/i2c/chips/tpa6185.ko
