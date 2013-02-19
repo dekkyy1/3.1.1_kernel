@@ -8,7 +8,7 @@
 
 DECLARE_EVENT_CLASS(set,
 	TP_PROTO(u32 cpu_id, unsigned long targfreq,
-	         unsigned long actualfreq),
+		unsigned long actualfreq),
 	TP_ARGS(cpu_id, targfreq, actualfreq),
 
 	TP_STRUCT__entry(
@@ -28,7 +28,13 @@ DECLARE_EVENT_CLASS(set,
 	      __entry->actualfreq)
 );
 
-DEFINE_EVENT(set, cpufreq_interactive_setspeed,
+DEFINE_EVENT(set, cpufreq_interactive_up,
+	TP_PROTO(u32 cpu_id, unsigned long targfreq,
+	     unsigned long actualfreq),
+	TP_ARGS(cpu_id, targfreq, actualfreq)
+);
+
+DEFINE_EVENT(set, cpufreq_interactive_down,
 	TP_PROTO(u32 cpu_id, unsigned long targfreq,
 	     unsigned long actualfreq),
 	TP_ARGS(cpu_id, targfreq, actualfreq)
@@ -77,27 +83,27 @@ DEFINE_EVENT(loadeval, cpufreq_interactive_notyet,
 );
 
 TRACE_EVENT(cpufreq_interactive_boost,
-	    TP_PROTO(const char *s),
-	    TP_ARGS(s),
+	    TP_PROTO(unsigned long freq),
+	    TP_ARGS(freq),
 	    TP_STRUCT__entry(
-		    __string(s, s)
+		    __field(unsigned long, freq)
 	    ),
 	    TP_fast_assign(
-		    __assign_str(s, s);
+		    __entry->freq = freq;
 	    ),
-	    TP_printk("%s", __get_str(s))
+	    TP_printk("freq=%lu", __entry->freq)
 );
 
 TRACE_EVENT(cpufreq_interactive_unboost,
-	    TP_PROTO(const char *s),
-	    TP_ARGS(s),
+	    TP_PROTO(unsigned long freq),
+	    TP_ARGS(freq),
 	    TP_STRUCT__entry(
-		    __string(s, s)
+		    __field(unsigned long, freq)
 	    ),
 	    TP_fast_assign(
-		    __assign_str(s, s);
+		    __entry->freq = freq;
 	    ),
-	    TP_printk("%s", __get_str(s))
+	    TP_printk("freq=%lu", __entry->freq)
 );
 
 #endif /* _TRACE_CPUFREQ_INTERACTIVE_H */
