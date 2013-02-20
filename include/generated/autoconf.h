@@ -155,8 +155,7 @@
 #define __enabled_CONFIG_SCSI_DH_MODULE 0
 #define __enabled_CONFIG_SCSI_LOGGING 0
 #define __enabled_CONFIG_SCSI_LOGGING_MODULE 0
-#define CONFIG_TEGRA_AUTO_HOTPLUG 1
-#define __enabled_CONFIG_TEGRA_AUTO_HOTPLUG 1
+#define __enabled_CONFIG_TEGRA_AUTO_HOTPLUG 0
 #define __enabled_CONFIG_TEGRA_AUTO_HOTPLUG_MODULE 0
 #define __enabled_CONFIG_SAMPLES 0
 #define __enabled_CONFIG_SAMPLES_MODULE 0
@@ -3183,8 +3182,7 @@
 #define __enabled_CONFIG_SND_PCXHR_MODULE 0
 #define __enabled_CONFIG_UFS_FS 0
 #define __enabled_CONFIG_UFS_FS_MODULE 0
-#define CONFIG_REPORT_PRESENT_CPUS 1
-#define __enabled_CONFIG_REPORT_PRESENT_CPUS 1
+#define __enabled_CONFIG_REPORT_PRESENT_CPUS 0
 #define __enabled_CONFIG_REPORT_PRESENT_CPUS_MODULE 0
 #define CONFIG_VM_EVENT_COUNTERS 1
 #define __enabled_CONFIG_VM_EVENT_COUNTERS 1
@@ -4204,6 +4202,9 @@
 #define __enabled_CONFIG_SENSORS_ADT7461_MODULE 0
 #define __enabled_CONFIG_IPX 0
 #define __enabled_CONFIG_IPX_MODULE 0
+#define CONFIG_TEGRA_MPDECISION 1
+#define __enabled_CONFIG_TEGRA_MPDECISION 1
+#define __enabled_CONFIG_TEGRA_MPDECISION_MODULE 0
 #define CONFIG_DEVMEM 1
 #define __enabled_CONFIG_DEVMEM 1
 #define __enabled_CONFIG_DEVMEM_MODULE 0
