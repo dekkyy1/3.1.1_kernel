@@ -4963,7 +4963,7 @@ struct tegra_cpufreq_table_data *tegra_cpufreq_table_get(void)
 static unsigned long emc_max_rate_threshold = 1100000;
 module_param(emc_max_rate_threshold, ulong, 0644);
 
-static unsigned long emc_balance_threshold = 640000;
+static unsigned long emc_balance_threshold = 600000;
 module_param(emc_balance_threshold, ulong, 0644);
 
 static unsigned long emc_balance_rate = 437000000;
