@@ -154,7 +154,6 @@ enum {
     __SPEED_900_MHZ__,
     __SPEED_1000_MHZ__,
     __SPEED_1100_MHZ__,
-    __SPEED_1150_MHZ__,
     __SPEED_1200_MHZ__,
     __SPEED_1300_MHZ__,
     __SPEED_1400_MHZ__,
@@ -186,13 +185,13 @@ struct pe_tbl {
     [__SPEED_400_MHZ__] =
     {
         .speed = 400000,
-        .lv_link = { .prev = _POWER_ENTRY(340), .next = _POWER_ENTRY(640) },
+        .lv_link = { .prev = _POWER_ENTRY(300), .next = _POWER_ENTRY(500) },
         .pwrref = { 140, 179, 216, 257 }
     },
     [__SPEED_500_MHZ__] =
     {
         .speed = 500000,
-        .lv_link = { .prev = _POWER_ENTRY(400), .next = _POWER_ENTRY(760) },
+        .lv_link = { .prev = _POWER_ENTRY(400), .next = _POWER_ENTRY(600) },
         .pwrref = { 144, 190, 223, 277 }
     },
     [__SPEED_600_MHZ__] =
@@ -204,7 +203,7 @@ struct pe_tbl {
     [__SPEED_700_MHZ__] =
     {
         .speed = 700000,
-        .lv_link = { .prev = _POWER_ENTRY(600), .next = _POWER_ENTRY(880) },
+        .lv_link = { .prev = _POWER_ENTRY(600), .next = _POWER_ENTRY(800) },
         .pwrref = { 183, 248, 318, 397 }
     },
     [__SPEED_800_MHZ__] =
@@ -254,13 +253,13 @@ struct pe_tbl {
     [__SPEED_300_MHZ__] =
     {
         .speed = 300000,
-        .lv_link = { .prev = NULL, .next = _POWER_ENTRY(440) },
+        .lv_link = { .prev = NULL, .next = _POWER_ENTRY(400) },
         .pwrref = { 84, 109, 134, 161 }
     },
     [__SPEED_400_MHZ__] =
     {
         .speed = 400000,
-        .lv_link = { .prev = _POWER_ENTRY(340), .next = _POWER_ENTRY(500) },
+        .lv_link = { .prev = _POWER_ENTRY(300), .next = _POWER_ENTRY(500) },
         .pwrref = { 105, 136, 168, 204 }
     },
     [__SPEED_500_MHZ__] =
@@ -333,7 +332,7 @@ struct pe_tbl {
 
 static struct list_head pe_tbl_housekeeper = {
     .prev = NULL,
-    .next = _POWER_ENTRY(340)
+    .next = _POWER_ENTRY(300)
 };
 
 unsigned int bthp_supported_min_speed (void) {
