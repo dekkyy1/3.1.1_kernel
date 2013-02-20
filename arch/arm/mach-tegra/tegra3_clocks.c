@@ -5009,10 +5009,10 @@ int tegra_update_mselect_rate(unsigned long cpu_rate)
 	}
 
 	/* Vote on mselect frequency based on cpu frequency:
-	   keep mselect at half of cpu rate up to 102 MHz;
+	   keep mselect at half of cpu rate up to 100 MHz;
 	   cpu rate is in kHz, mselect rate is in Hz */
 	mselect_rate = DIV_ROUND_UP(cpu_rate, 2) * 1000;
-	mselect_rate = min(mselect_rate, 102000000UL);
+	mselect_rate = min(mselect_rate, 100000000UL);
 
 	if (mselect_rate != clk_get_rate(mselect))
 		return clk_set_rate(mselect, mselect_rate);
