@@ -413,7 +413,7 @@ static void tegra_cpu_edp_init(bool resume)
 	tegra_get_cpu_edp_limits(&cpu_edp_limits, &cpu_edp_limits_size);
 
 	if(hboot_temp >= 75){
-		freq = 600000;
+		freq = 640000;
 		printk(KERN_INFO "[TMS] HBootTemp= %lu > 75 , set freq = %d \n", hboot_temp, freq);
 		htc_set_cpu_user_cap(freq);
 	}
@@ -538,14 +538,6 @@ int tegra_update_cpu_speed(unsigned long rate)
 	freqs.new = rate;
 
 	if (rate_save > 475000) {
-	rate = clk_round_rate(cpu_clk, rate * 1000);
-	if (!IS_ERR_VALUE(rate))
-		freqs.new = rate / 1000;
-
-	if (freqs.old == freqs.new)
-		return ret;
-
-	if (freqs.new < rate_save && rate_save >= 800000) {
 		if (is_lp_cluster()) {
 			orig_nice = task_nice(current);
 
@@ -559,7 +551,7 @@ int tegra_update_cpu_speed(unsigned long rate)
 					 " leave LPCPU (%s)", __func__);
 
 			/* set rate to max of LP mode */
-			ret = clk_set_rate(cpu_clk, 400000 * 1000);
+			ret = clk_set_rate(cpu_clk, 475000 * 1000);
 
 			/* change to g mode */
 			clk_set_parent(cpu_clk, cpu_g_clk);
@@ -2245,8 +2237,6 @@ static struct cpufreq_driver tegra_cpufreq_driver = {
 static void tegra_cpufreq_powersave_early_suspend(struct early_suspend *h)
 {
 	if(perf_early_suspend == 0){
-		pr_info("tegra_cpufreq_powersave_early_suspend: cap cpu freq to 400MHz\n");
-	MF_DEBUG("00250001");
 		pm_qos_update_request(&cap_cpu_freq_req, (s32)CAP_CPU_FREQ_MAX);
 		CAP_CPU_FREQ_TARGET = CAP_CPU_FREQ_MAX;
 	}
