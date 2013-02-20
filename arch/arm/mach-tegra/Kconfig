@@ -219,7 +219,6 @@ config HTC_PROJECT
        select ANDROID_RAM_CONSOLE_APPEND_PMIC_STATUS_BITS
        select DEBUG_MUTEXES
        select HTC_POWER_OFF
-       select DEBUG_CREDENTIALS
        help
          HTC Project
 
@@ -437,6 +436,12 @@ config TEGRA_CORE_DVFS
 	depends on TEGRA_CPU_DVFS
 	default y
 
+config TEGRA_3D_GPU_OVERCLOCK_520
+	bool "GPU 3D Overclocking"
+	default n
+  	help
+	GPU 3D Overclocking option
+
 config TEGRA_IOVMM_GART
 	bool "Enable I/O virtual memory manager for GART"
 	depends on ARCH_TEGRA_2x_SOC && !TEGRA_IOMMU_GART
@@ -565,20 +570,13 @@ config TEGRA_EMC_TO_DDR_CLOCK
 	default "1"
 
 config TEGRA_MPDECISION
-	bool "Enable better automatic CPU hot-plugging"
-	depends on HOTPLUG_CPU && CPU_FREQ && !ARCH_CPU_PROBE_RELEASE && !ARCH_TEGRA_2x_SOC
-	default y
-	help
-	 This option enables turning CPUs off/on and switching tegra
-	 high/low power CPU clusters automatically, corresponding to
-	 CPU frequency load.
-
-config TEGRA_INTERACTIVE_GOV_ON_EARLY_SUSPEND
-	bool "Use interactive cpu frequency governor when device enters early suspend"
-	depends on HAS_EARLYSUSPEND && CPU_FREQ && !TEGRA_CONSERVATIVE_GOV_ON_EARLY_SUSPEND
-	default y
-	help
-	 Also will restore to original cpu frequency governor when device is resumed
+        bool "Enable better automatic CPU hot-plugging"
+		depends on HOTPLUG_CPU && CPU_FREQ && !ARCH_CPU_PROBE_RELEASE && !ARCH_TEGRA_2x_SOC
+		default y
+		help
+		This option enables turning CPUs off/on and switching tegra
+		high/low power CPU clusters automatically, corresponding to
+		CPU frequency load.
 
 config TEGRA_SE_ON_CBUS
 	bool "To Drive SE clock from cbus"
@@ -671,13 +669,6 @@ config REMOVE_HSIC_L3_STATE
 	default n
 	help
 	  Remove HSIC L3 suspend state.
-
-config TEGRA_LP1_950
-	bool "LP1 low core voltage"
-	default n
-	depends on ARCH_TEGRA_3x_SOC
-	help
-	  Enable support for LP1 Core voltage to set to lowest
 
 config HTC_HEADSET_MGR
 	tristate "HTC headset manager driver"
@@ -869,3 +860,4 @@ config SENSE_4_PLUS
 config MEMORY_FOOTPRINT_DEBUGGING
 	bool "footprint for debugging"
 	default n
+
