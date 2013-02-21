@@ -1155,8 +1155,6 @@
 #define CONFIG_IP_NF_TARGET_LOG 1
 #define __enabled_CONFIG_IP_NF_TARGET_LOG 1
 #define __enabled_CONFIG_IP_NF_TARGET_LOG_MODULE 0
-#define __enabled_CONFIG_CC_OPTIMIZE_DEFAULT 0
-#define __enabled_CONFIG_CC_OPTIMIZE_DEFAULT_MODULE 0
 #define __enabled_CONFIG_LLC2 0
 #define __enabled_CONFIG_LLC2_MODULE 0
 #define __enabled_CONFIG_USB_F_SERIAL 0
@@ -5034,9 +5032,6 @@
 #define __enabled_CONFIG_TEGRA_AVP_MODULE 0
 #define __enabled_CONFIG_USB_CDC_COMPOSITE 0
 #define __enabled_CONFIG_USB_CDC_COMPOSITE_MODULE 0
-#define CONFIG_CC_OPTIMIZE_FAST 1
-#define __enabled_CONFIG_CC_OPTIMIZE_FAST 1
-#define __enabled_CONFIG_CC_OPTIMIZE_FAST_MODULE 0
 #define __enabled_CONFIG_SND_DEBUG 0
 #define __enabled_CONFIG_SND_DEBUG_MODULE 0
 #define __enabled_CONFIG_DCB 0
