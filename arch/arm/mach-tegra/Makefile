@@ -85,12 +85,7 @@ ifeq ($(CONFIG_TEGRA_MPDECISION),y)
 obj-$(CONFIG_ARCH_TEGRA_3x_SOC)     	+= tegra_mpdecision.o
 obj-$(CONFIG_ARCH_TEGRA_3x_SOC)     	+= tegra_rq_stats.o
 obj-$(CONFIG_ARCH_TEGRA_3x_SOC)         += cpu-tegra3.o
-obj-$(CONFIG_ARCH_TEGRA_3x_SOC)		+= cpu-tegra3.o
-
 endif
-ifeq ($(CONFIG_TEGRA_MPDECISION),y)
-obj-$(CONFIG_ARCH_TEGRA_3x_SOC) 		+= tegra_mpdecision.o
-obj-$(CONFIG_ARCH_TEGRA_3x_SOC) 		+= tegra_rq_stats.o
 endif
 obj-$(CONFIG_TEGRA_PCI)                 += pcie.o
 obj-$(CONFIG_USB_SUPPORT)               += usb_phy.o
@@ -334,4 +329,3 @@ obj-y += htc_port_list_lte.o
 obj-y 					+= htc_util.o
 
 obj-y += htc_monitor.o
-endif
