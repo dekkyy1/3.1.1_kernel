@@ -50,11 +50,6 @@
 #include "dvfs.h"
 #include "pm.h"
 
-#ifdef CONFIG_TEGRA_MPDECISION
-/* mpdecision notifier */
-extern int mpdecision_gmode_notifier(void);
-#endif
-
 extern unsigned int get_powersave_freq();
 /* Symbol to store resume resume */
 extern unsigned long long wake_reason_resume;
@@ -536,39 +531,31 @@ int tegra_update_cpu_speed(unsigned long rate)
 {
 	int ret = 0;
 	struct cpufreq_freqs freqs;
-	unsigned long rate_save = rate;
-	int status = 1;
 
+	unsigned long rate_save = rate;
+	int orig_nice = 0;
 	freqs.old = tegra_getspeed(0);
 	freqs.new = rate;
 
-	rate = clk_round_rate(cpu_clk, rate * 1000);
-	if (!IS_ERR_VALUE(rate))
-		freqs.new = rate / 1000;
-
-	if (freqs.old == freqs.new)
-		return ret;
-
-	if (freqs.new < rate_save && rate_save >= 880000) {
+	if (rate_save > 475000) {
 		if (is_lp_cluster()) {
+			orig_nice = task_nice(current);
 
-			pr_info("LP off %d %d %ld\n", freqs.old, freqs.new, rate_save);
+			if(can_nice(current, -20)) {
+				set_user_nice(current, -20);
+			} else {
+				pr_err("[cpufreq] can not nice(-20)!!");
+			}
+
+			CPU_DEBUG_PRINTK(CPU_DEBUG_HOTPLUG,
+					 " leave LPCPU (%s)", __func__);
+
 			/* set rate to max of LP mode */
 			ret = clk_set_rate(cpu_clk, 475000 * 1000);
 
-#ifndef CONFIG_TEGRA_MPDECISION
 			/* change to g mode */
 			clk_set_parent(cpu_clk, cpu_g_clk);
-#else
-            /*
-             * the above variant is now no longer preferred since
-             * mpdecision would not know about this. Notify mpdecision
-             * instead to switch to G mode
-             */
-             status = mpdecision_gmode_notifier();
-             if (status == 0)
-             	pr_err("%s: couldn't switch to gmode (freq)", __func__ );
-#endif
+
 			/* restore the target frequency, and
 			 * let the rest of the function handle
 			 * the frequency scale up
@@ -576,6 +563,11 @@ int tegra_update_cpu_speed(unsigned long rate)
 			freqs.new = rate_save;
 		}
 	}
+
+		if (freqs.old == freqs.new){
+		return ret;
+	}
+
 	/*
 	 * Vote on memory bus frequency based on cpu frequency
 	 * This sets the minimum frequency, display or avp may request higher
@@ -597,7 +589,6 @@ int tegra_update_cpu_speed(unsigned long rate)
 		}
 	}
 
-
 	for_each_online_cpu(freqs.cpu)
 		cpufreq_notify_transition(&freqs, CPUFREQ_PRECHANGE);
 
@@ -606,40 +597,35 @@ int tegra_update_cpu_speed(unsigned long rate)
 
 #ifdef CONFIG_CPU_FREQ_DEBUG
 	printk(KERN_DEBUG "cpufreq-tegra: transition: %u --> %u\n",
-	freqs.old, freqs.new);
+	       freqs.old, freqs.new);
 #endif
-
 
 	ret = clk_set_rate(cpu_clk, freqs.new * 1000);
 	if (ret) {
-		ret = clk_set_rate(cpu_clk, freqs.new * 1000);
-		if (ret) {
 		pr_err("cpu-tegra: Failed to set cpu frequency to %d kHz\n",
-		freqs.new);
+			freqs.new);
 		goto error;
 	}
 
-
-		for_each_online_cpu(freqs.cpu)
+	for_each_online_cpu(freqs.cpu)
 		cpufreq_notify_transition(&freqs, CPUFREQ_POSTCHANGE);
 
-		if (freqs.old > freqs.new) {
+	if (freqs.old > freqs.new) {
 		clk_set_rate(emc_clk, tegra_emc_to_cpu_ratio(freqs.new));
 		tegra_update_mselect_rate(freqs.new);
 	}
+
 error:
-	#if 0
 	if (orig_nice != task_nice(current)) {
-	if (can_nice(current, orig_nice)) {
-	set_user_nice(current, orig_nice);
-	} else {
-	pr_err("[cpufreq] can not restore nice(%d)!!",
-	orig_nice);
+		if (can_nice(current, orig_nice)) {
+			set_user_nice(current, orig_nice);
+		} else {
+			pr_err("[cpufreq] can not restore nice(%d)!!",
+					orig_nice);
+		}
 	}
-	}
-	#endif
 	return ret;
-	}
+}
 
 unsigned int tegra_count_slow_cpus(unsigned long speed_limit)
 {

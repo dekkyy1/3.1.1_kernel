@@ -564,14 +564,12 @@ config TEGRA_EMC_TO_DDR_CLOCK
 	default "2" if ARCH_TEGRA_2x_SOC
 	default "1"
 
-config TEGRA_MPDECISION
-        bool "Enable better automatic CPU hot-plugging"
-		depends on HOTPLUG_CPU && CPU_FREQ && !ARCH_CPU_PROBE_RELEASE && !ARCH_TEGRA_2x_SOC
-		default y
-		help
-		This option enables turning CPUs off/on and switching tegra
-		high/low power CPU clusters automatically, corresponding to
-		CPU frequency load.
+config TEGRA_INTERACTIVE_GOV_ON_EARLY_SUSPEND
+	bool "Use interactive cpu frequency governor when device enters early suspend"
+	depends on HAS_EARLYSUSPEND && CPU_FREQ && !TEGRA_CONSERVATIVE_GOV_ON_EARLY_SUSPEND
+	default y
+	help
+	 Also will restore to original cpu frequency governor when device is resumed
 
 config TEGRA_SE_ON_CBUS
 	bool "To Drive SE clock from cbus"
