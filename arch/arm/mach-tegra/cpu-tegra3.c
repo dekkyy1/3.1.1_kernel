@@ -145,13 +145,12 @@ enum {
 };
 
 enum {
-    __SPEED_300_MHZ__,
-    __SPEED_400_MHZ__,
-    __SPEED_500_MHZ__,
-    __SPEED_600_MHZ__,
-    __SPEED_700_MHZ__,
-    __SPEED_800_MHZ__,
-    __SPEED_900_MHZ__,
+    __SPEED_340_MHZ__,
+    __SPEED_475_MHZ__,
+    __SPEED_640_MHZ__,
+    __SPEED_760_MHZ__,
+    __SPEED_910_MHZ__,
+    __SPEED_880_MHZ__,
     __SPEED_1000_MHZ__,
     __SPEED_1100_MHZ__,
     __SPEED_1150_MHZ__,
@@ -177,46 +176,40 @@ struct pe_tbl {
                                      */
 } _pe_tbl[] = {
 #if defined(CONFIG_TEGRA_CPU_AP33)
-    [__SPEED_300_MHZ__] =
+    [__SPEED_340_MHZ__] =
     {
-        .speed = 300000,
-        .lv_link = { .prev = NULL, .next = _POWER_ENTRY(400) },
+        .speed = 340000,
+        .lv_link = { .prev = NULL, .next = _POWER_ENTRY(475) },
         .pwrref = { 74, 100, 125, 146 }
     },
-    [__SPEED_400_MHZ__] =
+    [__SPEED_475_MHZ__] =
     {
-        .speed = 400000,
+        .speed = 475000,
         .lv_link = { .prev = _POWER_ENTRY(340), .next = _POWER_ENTRY(640) },
         .pwrref = { 140, 179, 216, 257 }
     },
-    [__SPEED_500_MHZ__] =
+    [__SPEED_640_MHZ__] =
     {
-        .speed = 500000,
-        .lv_link = { .prev = _POWER_ENTRY(400), .next = _POWER_ENTRY(760) },
-        .pwrref = { 144, 190, 223, 277 }
+        .speed = 640000,
+        .lv_link = { .prev = _POWER_ENTRY(475), .next = _POWER_ENTRY(760) },
+        .pwrref = { 156, 202, 249, 302 }
     },
-    [__SPEED_600_MHZ__] =
+    [__SPEED_760_MHZ__] =
     {
-        .speed = 600000,
-	.lv_link = { .prev = _POWER_ENTRY(500), .next = _POWER_ENTRY(700) },
-	.pwrref = { 156, 202, 249, 302 }
-    },
-    [__SPEED_700_MHZ__] =
-    {
-        .speed = 700000,
-        .lv_link = { .prev = _POWER_ENTRY(600), .next = _POWER_ENTRY(880) },
+        .speed = 760000,
+        .lv_link = { .prev = _POWER_ENTRY(640), .next = _POWER_ENTRY(880) },
         .pwrref = { 183, 248, 318, 397 }
     },
-    [__SPEED_800_MHZ__] =
+    [__SPEED_880_MHZ__] =
     {
-        .speed = 800000,
-        .lv_link = { .prev = _POWER_ENTRY(700), .next = _POWER_ENTRY(1000) },
+        .speed = 880000,
+        .lv_link = { .prev = _POWER_ENTRY(760), .next = _POWER_ENTRY(1000) },
         .pwrref = { 200, 275, 360, 457 }
     },
     [__SPEED_1000_MHZ__] =
     {
         .speed = 1000000,
-        .lv_link = { .prev = _POWER_ENTRY(800), .next = _POWER_ENTRY(1100) },
+        .lv_link = { .prev = _POWER_ENTRY(880), .next = _POWER_ENTRY(1100) },
         .pwrref = { 220, 312, 415, 537 }
     },
     [__SPEED_1100_MHZ__] =
@@ -251,57 +244,52 @@ struct pe_tbl {
     },
 
 #elif defined(CONFIG_TEGRA_CPU_AP37)
-    [__SPEED_300_MHZ__] =
+    [__SPEED_340_MHZ__] =
     {
-        .speed = 300000,
-        .lv_link = { .prev = NULL, .next = _POWER_ENTRY(440) },
+        .speed = 340000,
+        .lv_link = { .prev = NULL, .next = _POWER_ENTRY(475) },
         .pwrref = { 84, 109, 134, 161 }
     },
-    [__SPEED_400_MHZ__] =
+    [__SPEED_475_MHZ__] =
     {
-        .speed = 400000,
-        .lv_link = { .prev = _POWER_ENTRY(340), .next = _POWER_ENTRY(500) },
+        .speed = 475000,
+        .lv_link = { .prev = _POWER_ENTRY(340), .next = _POWER_ENTRY(640) },
         .pwrref = { 105, 136, 168, 204 }
     },
-    [__SPEED_500_MHZ__] =
+    [__SPEED_640_MHZ__] =
     {
-        .speed = 500000,
-        .lv_link = { .prev = _POWER_ENTRY(400), .next = _POWER_ENTRY(600) },
-        .pwrref = { 120, 163, 191, 244 }
+        .speed = 640000,
+        .lv_link = { .prev = _POWER_ENTRY(475), .next = _POWER_ENTRY(760) },
+        .pwrref = { 134, 195, 245, 299 }
     },
-    [__SPEED_600_MHZ__] =
-	.speed = 600000,
-	.lv_link = { .prev = _POWER_ENTRY(500), .next = _POWER_ENTRY(700) },
-	.pwrref = { 134, 195, 245, 299 }
-    },
-    [__SPEED_700_MHZ__] =
+    [__SPEED_760_MHZ__] =
     {
-        .speed = 700000,
-        .lv_link = { .prev = _POWER_ENTRY(600), .next = _POWER_ENTRY(900) },
+        .speed = 760000,
+        .lv_link = { .prev = _POWER_ENTRY(640), .next = _POWER_ENTRY(910) },
         .pwrref = { 140, 212, 273, 340 }
     },
     [__SPEED_910_MHZ__] =
     {
-        .speed = 900000,
-        .lv_link = { .prev = _POWER_ENTRY(700), .next = _POWER_ENTRY(1000) },
+        .speed = 910000,
+        .lv_link = { .prev = _POWER_ENTRY(760), .next = _POWER_ENTRY(1000) },
         .pwrref = { 165, 256, 337, 423 }
     },
     [__SPEED_1000_MHZ__] =
     {
         .speed = 1000000,
-        .lv_link = { .prev = _POWER_ENTRY(910), .next = _POWER_ENTRY(1200) },
+        .lv_link = { .prev = _POWER_ENTRY(910), .next = _POWER_ENTRY(1150) },
         .pwrref = { 178, 298, 398, 508 }
     },
-    [__SPEED_1200_MHZ__] =
+    [__SPEED_1150_MHZ__] =
     {
-        .speed = 1200000,
+        .speed = 1150000,
         .lv_link = { .prev = _POWER_ENTRY(1000), .next = _POWER_ENTRY(1300) },
         .pwrref = { 237, 349, 475, 615 }
     },
     [__SPEED_1300_MHZ__] =
     {
         .speed = 1300000,
-        .lv_link = { .prev = _POWER_ENTRY(1200), .next = _POWER_ENTRY(1400) },
+        .lv_link = { .prev = _POWER_ENTRY(1150), .next = _POWER_ENTRY(1400) },
         .pwrref = { 282, 431, 601, 795 }
     },
     [__SPEED_1400_MHZ__] =
