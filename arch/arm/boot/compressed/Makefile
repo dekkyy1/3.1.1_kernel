@@ -126,11 +126,10 @@ LDFLAGS_vmlinux += -X
 # Next argument is a linker script
 LDFLAGS_vmlinux += -T
 
-# For __aeabi_uidivmod
-AFLAGS_lib1funcs.o +=-Wa,-march=armv7-a$(plus_sec)
-lib1funcs = $(obj)/lib1funcs.o
+# For __aeabi_llsl
+ashldi3 = $(obj)/ashldi3.o
 
-$(obj)/lib1funcs.S: $(srctree)/arch/$(SRCARCH)/lib/lib1funcs.S FORCE
+$(obj)/ashldi3.S: $(srctree)/arch/$(SRCARCH)/lib/ashldi3.S FORCE
 	$(call cmd,shipped)
 
 # We need to prevent any GOTOFF relocs being used with references
